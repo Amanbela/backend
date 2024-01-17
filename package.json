@@ -1,14 +1,18 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "a backend ",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "javascript"
-  ],
-  "author": "\"Aman\"",
-  "license": "ISC"
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "a backend ",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon src/index.js"
+    },
+    "keywords": [
+        "javascript"
+    ],
+    "author": "\"Aman\"",
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^3.0.3"
+    }
 }
