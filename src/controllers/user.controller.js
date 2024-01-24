@@ -234,7 +234,7 @@ const changeCurrentPassword = asyncHandler(async(req, res) => {
 
 
 
-    const user = await User.findById(req.user ? ._id)
+    const user = await User.findById(req.user._id)
     const isPasswordCorrect = await user.isPasswordCorrect(oldPassword)
 
     if (!isPasswordCorrect) {
@@ -268,7 +268,7 @@ const updateAccountDetails = asyncHandler(async(req, res) => {
     }
 
     const user = await User.findByIdAndUpdate(
-        req.user ? ._id, {
+        req.user._id, {
             $set: {
                 fullName,
                 email: email
@@ -283,7 +283,7 @@ const updateAccountDetails = asyncHandler(async(req, res) => {
 });
 
 const updateUserAvatar = asyncHandler(async(req, res) => {
-    const avatarLocalPath = req.file ? .path
+    const avatarLocalPath = req.file.path
 
     if (!avatarLocalPath) {
         throw new ApiError(400, "Avatar file is missing")
@@ -299,7 +299,7 @@ const updateUserAvatar = asyncHandler(async(req, res) => {
     }
 
     const user = await User.findByIdAndUpdate(
-        req.user ? ._id, {
+        req.user._id, {
             $set: {
                 avatar: avatar.url
             }
@@ -312,9 +312,14 @@ const updateUserAvatar = asyncHandler(async(req, res) => {
             new ApiResponse(200, user, "Avatar image updated successfully")
         )
 })
+
 export {
     registerUser,
     loginUser,
     logoutUser,
-    refreshAccessToken
+    refreshAccessToken,
+    changeCurrentPassword,
+    getCurrentUser,
+    updateAccountDetails,
+    updateUserAvatar,
 }
